@@ -35,10 +35,10 @@ abstract class RefreshIndicator extends StatefulWidget {
 
   const RefreshIndicator(
       {Key? key,
-      this.height = 60.0,
-      this.offset = 0.0,
-      this.completeDuration = const Duration(milliseconds: 500),
-      this.refreshStyle = RefreshStyle.Follow})
+      this.height: 60.0,
+      this.offset: 0.0,
+      this.completeDuration: const Duration(milliseconds: 500),
+      this.refreshStyle: RefreshStyle.Follow})
       : super(key: key);
 }
 
@@ -56,8 +56,8 @@ abstract class LoadIndicator extends StatefulWidget {
   const LoadIndicator(
       {Key? key,
       this.onClick,
-      this.loadStyle = LoadStyle.ShowAlways,
-      this.height = 60.0})
+      this.loadStyle: LoadStyle.ShowAlways,
+      this.height: 60.0})
       : super(key: key);
 }
 
@@ -686,7 +686,7 @@ mixin IndicatorStateMixin<T extends StatefulWidget, V> on State<T> {
 }
 
 /// head Indicator exposure interface
-mixin RefreshProcessor {
+abstract class RefreshProcessor {
   /// out of edge offset callback
   void onOffsetChange(double offset) {}
 
@@ -708,7 +708,7 @@ mixin RefreshProcessor {
 }
 
 /// footer Indicator exposure interface
-mixin LoadingProcessor {
+abstract class LoadingProcessor {
   void onOffsetChange(double offset) {}
 
   void onModeChange(LoadStatus? mode) {}

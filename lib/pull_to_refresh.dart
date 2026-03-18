@@ -4,7 +4,7 @@
     createTime:2018-05-03 15:39
  */
 
-library pulltorefresh;
+library pull_to_refresh;
 
 export 'src/smart_refresher.dart';
 export 'src/indicator/classic_indicator.dart';
