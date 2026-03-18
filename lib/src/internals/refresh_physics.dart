@@ -290,7 +290,7 @@ class RefreshPhysics extends ScrollPhysics {
         spring: springDescription ?? spring,
         position: position.pixels,
         // -1.0 avoid stop springing back ,and release gesture
-        velocity = velocity * 0.91,
+        velocity: velocity * 0.91,
         // TODO(abarth): We should move this constant closer to the drag end.
         leadingExtent: position.minScrollExtent,
         trailingExtent:
