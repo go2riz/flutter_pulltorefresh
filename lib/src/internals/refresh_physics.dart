@@ -165,7 +165,7 @@ class RefreshPhysics extends ScrollPhysics {
   }
 
   double frictionFactor(double overscrollFraction) =>
-      (0.52 * math.pow(1 - overscrollFraction, 2)).toDouble();
+      0.52 * math.pow(1 - overscrollFraction, 2);
 
   @override
   double applyBoundaryConditions(ScrollMetrics position, double value) {
@@ -286,18 +286,18 @@ class RefreshPhysics extends ScrollPhysics {
     if ((position.pixels > 0 &&
             controller!.headerMode!.value == RefreshStatus.twoLeveling) ||
         position.outOfRange) {
-      final Tolerance simulationTolerance = toleranceFor(position);
       return BouncingScrollSimulation(
+        spring: springDescription ?? spring,
         position: position.pixels,
-        // 0.91 avoids an abrupt stop when springing back after gesture release.
-        velocity: velocity * 0.91,
+        // -1.0 avoid stop springing back ,and release gesture
+        velocity = velocity * 0.91,
+        // TODO(abarth): We should move this constant closer to the drag end.
         leadingExtent: position.minScrollExtent,
         trailingExtent:
             controller!.headerMode!.value == RefreshStatus.twoLeveling
                 ? 0.0
                 : position.maxScrollExtent,
-        spring: springDescription ?? spring,
-        tolerance: simulationTolerance,
+        tolerance: toleranceFor(position),
         constantDeceleration: 0,
       );
     }

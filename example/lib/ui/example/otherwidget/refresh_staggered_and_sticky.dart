@@ -11,7 +11,7 @@ import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 /*
    use refresh with StaggeredGridView or StickyHeader
    the two plugins from letsar
-   author page : https://github.com/letsar
+   author page = https://github.com/letsar
  */
 class RefreshStaggeredAndSticky extends StatefulWidget {
   RefreshStaggeredAndSticky({Key key}) : super(key: key);

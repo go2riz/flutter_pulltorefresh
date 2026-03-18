@@ -16,7 +16,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
    list move up,
    the second example use Navigator and keep offset when twoLevel trigger,
    header can use ClassicalHeader to implments twoLevel,it provide outerBuilder(1.4.7)
-   important point:
+   important point =
    1. open enableTwiceRefresh bool ,default is false
    2. _refreshController.twiceRefreshComplete() can closing the two level
 */

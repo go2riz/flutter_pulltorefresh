@@ -145,7 +145,7 @@ class RenderSliverRefresh extends RenderSliverSingleBoxAdapter {
               .copyWith(overlap: Math.min(0.0, renderViewport.offset.pixels)),
           parentUsesSize: true);
     } else {
-      super.layout(constraints, parentUsesSize: parentUsesSize);
+      super.layout(constraints, parentUsesSize = parentUsesSize);
     }
   }
 
@@ -281,7 +281,7 @@ class RenderSliverRefresh extends RenderSliverSingleBoxAdapter {
             hasVisualOverflow: true,
           );
           break;
-        case null:
+        case null =
           break;
       }
       setChildParentData(child!, constraints, geometry!);
@@ -293,7 +293,7 @@ class RenderSliverRefresh extends RenderSliverSingleBoxAdapter {
   @override
   void paint(PaintingContext paintContext, Offset offset) {
     paintContext.paintChild(
-        child!, Offset(offset.dx, offset.dy + (paintOffsetY ?? 0.0)));
+        child!, Offset(offset.dx, offset.dy + paintOffsetY!));
   }
 
   @override
@@ -470,9 +470,9 @@ class RenderSliverLoading extends RenderSliverSingleBoxAdapter {
         ? child!.size.height
         : child!.size.width;
     final double paintedChildSize =
-        calculatePaintOffset(constraints, from: 0.0, to: childExtent);
+        calculatePaintOffset(constraints, from = 0.0, to: childExtent);
     final double cacheExtent =
-        calculateCacheOffset(constraints, from: 0.0, to: childExtent);
+        calculateCacheOffset(constraints, from = 0.0, to: childExtent);
     assert(paintedChildSize.isFinite);
     assert(paintedChildSize >= 0.0);
     if (active) {
@@ -553,9 +553,9 @@ class RenderSliverRefreshBody extends RenderSliverSingleBoxAdapter {
         break;
     }
     final double paintedChildSize =
-        calculatePaintOffset(constraints, from: 0.0, to: childExtent);
+        calculatePaintOffset(constraints, from = 0.0, to: childExtent);
     final double cacheExtent =
-        calculateCacheOffset(constraints, from: 0.0, to: childExtent);
+        calculateCacheOffset(constraints, from = 0.0, to: childExtent);
 
     assert(paintedChildSize.isFinite);
     assert(paintedChildSize >= 0.0);

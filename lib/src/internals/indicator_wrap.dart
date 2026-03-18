@@ -35,10 +35,10 @@ abstract class RefreshIndicator extends StatefulWidget {
 
   const RefreshIndicator(
       {Key? key,
-      this.height: 60.0,
-      this.offset: 0.0,
-      this.completeDuration: const Duration(milliseconds: 500),
-      this.refreshStyle: RefreshStyle.Follow})
+      this.height = 60.0,
+      this.offset = 0.0,
+      this.completeDuration = const Duration(milliseconds: 500),
+      this.refreshStyle = RefreshStyle.Follow})
       : super(key: key);
 }
 
@@ -56,8 +56,8 @@ abstract class LoadIndicator extends StatefulWidget {
   const LoadIndicator(
       {Key? key,
       this.onClick,
-      this.loadStyle: LoadStyle.ShowAlways,
-      this.height: 60.0})
+      this.loadStyle = LoadStyle.ShowAlways,
+      this.height = 60.0})
       : super(key: key);
 }
 
@@ -252,7 +252,7 @@ abstract class RefreshIndicatorState<T extends RefreshIndicator>
         }
         update();
         /*
-          handle two Situation:
+          handle two Situation =
           1.when user dragging to refreshing, then user scroll down not to see the indicator,then it will not spring back,
           the _onOffsetChange didn't callback,it will keep failed or success state.
           2. As FrontStyle,when user dragging in 0~100 in refreshing state,it should be reset after the state change
@@ -686,7 +686,7 @@ mixin IndicatorStateMixin<T extends StatefulWidget, V> on State<T> {
 }
 
 /// head Indicator exposure interface
-abstract class RefreshProcessor {
+mixin class RefreshProcessor {
   /// out of edge offset callback
   void onOffsetChange(double offset) {}
 
@@ -708,7 +708,7 @@ abstract class RefreshProcessor {
 }
 
 /// footer Indicator exposure interface
-abstract class LoadingProcessor {
+mixin class LoadingProcessor {
   void onOffsetChange(double offset) {}
 
   void onModeChange(LoadStatus? mode) {}

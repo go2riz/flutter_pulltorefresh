@@ -363,7 +363,7 @@ class _ReorderableListContentState extends State<_ReorderableListContent>
       _scrolling = true;
       _scrollController.position
           .animateTo(
-        scrollOffset < bottomOffset ? bottomOffset : topOffset,
+        scrollOffset < bottomOffset ? bottomOffset = topOffset,
         duration: _scrollAnimationDuration,
         curve: Curves.easeInOut,
       )

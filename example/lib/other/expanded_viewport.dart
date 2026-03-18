@@ -12,8 +12,8 @@ import 'dart:math' as math;
    aim to implements expand all the free empty place when viewport is not full
    ,but this can not correction offset,due to _minScrollExtent,_maxScrollExtent private in RenderViewport
    ,no idea how to do. without doing this,chat list (top when not full && reverse = true) can not be done.
-   in my plugin similar issue:#127,# 118
-   in flutter similar issue:#12650,#33399,#17444
+   in my plugin similar issue =#127,# 118
+   in flutter similar issue =#12650,#33399,#17444
  */
 
 class ExpandedViewport extends Viewport {

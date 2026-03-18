@@ -242,7 +242,7 @@ class _MessageItem extends StatelessWidget {
                 alignment: isMe ? Alignment.topRight : Alignment.topLeft,
                 child: Text(
                   author,
-                  style: TextStyle(color: Colors.grey, fontSize: 16),
+                  style = TextStyle(color: Colors.grey, fontSize: 16),
                 ),
               ),
               Container(
@@ -258,7 +258,7 @@ class _MessageItem extends StatelessWidget {
                 ),
                 child: Text(
                   content,
-                  style: TextStyle(color: Colors.black),
+                  style = TextStyle(color: Colors.black),
                 ),
                 padding: EdgeInsets.all(10.0),
               )

@@ -9,9 +9,9 @@
   SmartRefresher has an ability to automatically hide indicators when less than one page,e
    when your slivers have some complex sliver,which will cause error hiding,so You need to hide it  yourself.
    though many widgets provided by flutter doesn't have this situation
-   first step:  give RefreshConfiguration's hideFooterWhenNotFull = false
-   second step:  use LayoutBuilder get the Widget height
-   third step: Use your judgment to decide whether to hide footer, enablePullUp = false
+   first step =  give RefreshConfiguration's hideFooterWhenNotFull = false
+   second step =  use LayoutBuilder get the Widget height
+   third step = Use your judgment to decide whether to hide footer, enablePullUp = false
  */
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

@@ -42,9 +42,9 @@ class RenderSliverFillEmptySpace extends RenderSliverSingleBoxAdapter {
           parentUsesSize: true);
       double childExtent = emptySpaceExtent;
       final double paintedChildSize =
-          calculatePaintOffset(constraints, from: 0.0, to: childExtent);
+          calculatePaintOffset(constraints, from = 0.0, to: childExtent);
       final double cacheExtent =
-          calculateCacheOffset(constraints, from: 0.0, to: childExtent);
+          calculateCacheOffset(constraints, from = 0.0, to: childExtent);
       geometry = SliverGeometry(
         scrollExtent: childExtent,
         paintExtent: paintedChildSize,
