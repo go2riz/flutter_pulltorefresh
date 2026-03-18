@@ -1,8 +1,11 @@
-# demo
+# Example
 
-A new Flutter project.
+This fork now ships with a minimal Flutter 3 / Dart 3 example app.
 
-## Getting Started
+If you want fresh platform folders for the example, regenerate them from inside this directory:
 
-For help getting started with Flutter, view our online
-[documentation](https://flutter.io/).
+```bash
+flutter create . --platforms=android,ios
+```
+
+That is safer than keeping legacy platform scaffolding from older Flutter templates.

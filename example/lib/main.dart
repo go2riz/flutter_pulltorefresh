@@ -1,87 +1,112 @@
-import 'package:example/other/refresh_glowindicator.dart';
-import 'package:example/ui/MainActivity.dart';
-import 'package:example/ui/SecondActivity.dart';
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'ui/indicator/base/IndicatorActivity.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(const DemoApp());
+}
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class DemoApp extends StatelessWidget {
+  const DemoApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return RefreshConfiguration(
-      footerTriggerDistance: 15,
-      dragSpeedRatio: 0.91,
-      headerBuilder: () => MaterialClassicHeader(),
-      footerBuilder: () => ClassicFooter(),
-      enableLoadingWhenNoData: false,
-      enableRefreshVibrate: false,
-      enableLoadMoreVibrate: false,
-      shouldFooterFollowWhenNotFull: (state) {
-        // If you want load more with noMoreData state ,may be you should return false
-        return false;
-      },
+      headerBuilder: () => const MaterialClassicHeader(),
+      footerBuilder: () => const ClassicFooter(),
       child: MaterialApp(
-        title: 'Pulltorefresh Demo',
         debugShowCheckedModeBanner: false,
-        builder: (context, child) {
-          return ScrollConfiguration(
-            child: child,
-            behavior: RefreshScrollBehavior(),
-          );
-        },
-        theme: ThemeData(
-            // This is the theme of your application.
-            //s
-            // Try running your application with "flutter run". You'll see the
-            // application has a blue toolbar. Then, without quitting the app, try
-            // changing the primarySwatch below to Colors.green and then invoke
-            // "hot reload" (press "r" in the console where you ran "flutter run",
-            // or press Run > Flutter Hot Reload in IntelliJ). Notice that the
-            // counter didn't reset back to zero; the application is not restarted.
-            primarySwatch: Colors.blue,
-            primaryColor: Colors.greenAccent),
-        localizationsDelegates: [
+        title: 'pull_to_refresh demo',
+        localizationsDelegates: const [
           RefreshLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate
+          GlobalCupertinoLocalizations.delegate,
         ],
-        supportedLocales: [
-          const Locale('en'),
-          const Locale('zh'),
-          const Locale('ja'),
-          const Locale('uk'),
-          const Locale('it'),
-          const Locale('ru'),
-          const Locale('fr'),
-          const Locale('es'),
-          const Locale('nl'),
-          const Locale('sv'),
-          const Locale('pt'),
-          const Locale('ko'),
+        supportedLocales: const [
+          Locale('en'),
+          Locale('zh'),
+          Locale('ja'),
+          Locale('uk'),
+          Locale('it'),
+          Locale('ru'),
+          Locale('fr'),
+          Locale('es'),
+          Locale('nl'),
+          Locale('sv'),
+          Locale('pt'),
+          Locale('ko'),
         ],
-        locale: const Locale('zh'),
-        localeResolutionCallback:
-            (Locale locale, Iterable<Locale> supportedLocales) {
-          //print("change language");
-          return locale;
-        },
-        home: MainActivity(title: 'Pulltorefresh'),
-        routes: {
-          "sec": (BuildContext context) {
-            return SecondActivity(
-              title: "SecondAct",
-            );
-          },
-          "indicator": (BuildContext context) {
-            return IndicatorActivity();
-          }
-        },
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+          useMaterial3: true,
+        ),
+        home: const DemoPage(),
+      ),
+    );
+  }
+}
+
+class DemoPage extends StatefulWidget {
+  const DemoPage({super.key});
+
+  @override
+  State<DemoPage> createState() => _DemoPageState();
+}
+
+class _DemoPageState extends State<DemoPage> {
+  final RefreshController _controller = RefreshController();
+  final List<int> _items = List<int>.generate(20, (index) => index);
+
+  Future<void> _onRefresh() async {
+    await Future<void>.delayed(const Duration(milliseconds: 800));
+    if (!mounted) return;
+    setState(() {
+      _items
+        ..clear()
+        ..addAll(List<int>.generate(20, (index) => index));
+    });
+    _controller.refreshCompleted(resetFooterState: true);
+  }
+
+  Future<void> _onLoading() async {
+    await Future<void>.delayed(const Duration(milliseconds: 800));
+    if (!mounted) return;
+    setState(() {
+      final start = _items.length;
+      _items.addAll(List<int>.generate(10, (index) => start + index));
+    });
+    _controller.loadComplete();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('pull_to_refresh demo')),
+      body: SmartRefresher(
+        controller: _controller,
+        enablePullDown: true,
+        enablePullUp: true,
+        onRefresh: _onRefresh,
+        onLoading: _onLoading,
+        child: ListView.separated(
+          itemCount: _items.length,
+          separatorBuilder: (_, __) => const Divider(height: 1),
+          itemBuilder: (context, index) => ListTile(
+            leading: CircleAvatar(child: Text('${_items[index]}')),
+            title: Text('Item ${_items[index]}'),
+            subtitle: const Text('Pull down to refresh, pull up to load more'),
+          ),
+        ),
       ),
     );
   }

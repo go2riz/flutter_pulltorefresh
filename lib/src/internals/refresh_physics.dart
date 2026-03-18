@@ -165,7 +165,7 @@ class RefreshPhysics extends ScrollPhysics {
   }
 
   double frictionFactor(double overscrollFraction) =>
-      0.52 * math.pow(1 - overscrollFraction, 2);
+      (0.52 * math.pow(1 - overscrollFraction, 2)).toDouble();
 
   @override
   double applyBoundaryConditions(ScrollMetrics position, double value) {
