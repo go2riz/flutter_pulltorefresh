@@ -28,7 +28,7 @@ class ShimmerHeader extends RefreshIndicator {
       this.baseColor = Colors.grey,
       this.highlightColor = Colors.white,
       this.outerBuilder,
-      double height: 80.0,
+      double height = 80.0,
       this.period = const Duration(milliseconds: 1000),
       this.direction = ShimmerDirection.ltr})
       : super(height: height, refreshStyle: RefreshStyle.Behind);
@@ -107,12 +107,12 @@ class ShimmerFooter extends LoadIndicator {
       this.baseColor = Colors.grey,
       this.highlightColor = Colors.white,
       this.outerBuilder,
-      double height: 80.0,
+      double height = 80.0,
       this.failed,
       this.noMore,
       this.period = const Duration(milliseconds: 1000),
       this.direction = ShimmerDirection.ltr,
-      LoadStyle loadStyle: LoadStyle.ShowAlways})
+      LoadStyle loadStyle = LoadStyle.ShowAlways})
       : super(height: height, loadStyle: loadStyle);
 
   @override

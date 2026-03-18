@@ -16,7 +16,7 @@ import 'test_indicator.dart';
 Future<void>? buildNotFullList(tester, bool reverse, Axis direction,
     {dynamic footer = const TestFooter(),
     dynamic header = const TestHeader(),
-    bool initload: false}) {
+    bool initload = false}) {
   final RefreshController _refreshController = RefreshController(
       initialLoadStatus: initload ? LoadStatus.loading : LoadStatus.idle);
   return tester.pumpWidget(MaterialApp(
@@ -239,7 +239,7 @@ void main() {
               builder: (c, m) {
                 return Container(
                   // If color not setting, onClick cannot work ,this question only can ask flutter why
-                  height: 60.0,
+                  height = 60.0,
                 );
               },
               onClick: () {

@@ -22,9 +22,9 @@ class IndicatorActivity extends StatefulWidget {
   IndicatorActivity(
       {this.title,
       this.header,
-      this.reverse: false,
+      this.reverse = false,
       this.footer,
-      this.enableOverScroll: true});
+      this.enableOverScroll = true});
 
   @override
   State<StatefulWidget> createState() {

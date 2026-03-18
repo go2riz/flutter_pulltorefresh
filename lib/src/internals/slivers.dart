@@ -293,7 +293,7 @@ class RenderSliverRefresh extends RenderSliverSingleBoxAdapter {
   @override
   void paint(PaintingContext paintContext, Offset offset) {
     paintContext.paintChild(
-        child!, Offset(offset.dx, offset.dy + (paintOffsetY ?? 0.0)));
+        child!, Offset(offset.dx, offset.dy + paintOffsetY!));
   }
 
   @override

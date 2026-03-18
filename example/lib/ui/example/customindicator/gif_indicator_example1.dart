@@ -12,7 +12,7 @@ import 'package:flutter/material.dart'
 
 /*
   I use my plugin to implements gif effect,this plugin can help you to controll gif easily,
-  see page to find about usage: (https://github.com/peng8350/flutter_gifimage)
+  see page to find about usage = (https://github.com/peng8350/flutter_gifimage)
 */
 class GifHeader1 extends RefreshIndicator {
   GifHeader1() : super(height: 80.0, refreshStyle: RefreshStyle.Follow);
